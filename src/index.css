@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Noto+Serif+JP:wght@300&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(25,25,25);
+    font-family: 'Lato', 'Noto Serif JP', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+    margin: 0;
+    padding: 0
+}
+
+.test {
+    float: left;
+    width: 100%;
 }

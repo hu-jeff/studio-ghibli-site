@@ -1,0 +1,86 @@
+.opening {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background_video {
+    width: 100%;
+    position:relative;
+}
+
+.loading_screen {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    background-color: black;
+    flex-direction: column;
+    /*gap: 5px;*/
+}
+
+.loading_screen h1 {
+    font-family: sans-serif;
+    font-size: .8em;
+}
+
+.loading_screen h2 {
+    font-family: sans-serif;
+    font-size: .6em
+}
+
+.visible {
+    opacity: 0.8;
+    transition: opacity 1s ease-out; /* 1s */
+}
+
+.fullvisible {
+    opacity: 1;
+    transition: opacity 1s linear;
+}
+
+.notvisible {
+    opacity: 0;
+    transition: opacity 1s ease-in; /* 1s */
+}
+
+.slide {
+    position:absolute;
+    top: 30px;
+    left: -190px;
+    background-color: rgb(30,30,40);
+    display:flex;
+    width: 180px;
+    height: 50px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right:10px;
+    transition: transform .5s ease;
+}
+
+.moveslide {
+    transform: translateX(190px)
+}
+
+.caption {
+    font-size: 1em;
+    color: #87CEEB;
+    letter-spacing: 1px;
+}
+
+.logo {
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    width:200px;
+    filter: invert(100%)
+}
+
+.continue_button {
+    position:absolute;
+    left: 50%;
+    bottom: 0;
+    color: white;
+    transform: translate(-50%, 0);
+}
