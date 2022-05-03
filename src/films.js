@@ -42,8 +42,6 @@ class Description extends React.Component {
                 </div>
                 <h1 className={'name'}>
                     {this.props.name.toUpperCase()} ({this.props.original})
-
-                    <h3 className="publish">produced by {this.props.producer} | directed by {this.props.director}</h3>
                 </h1>
 
                 <p className={'date'}>{this.props.release_date}</p>
