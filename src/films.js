@@ -1,5 +1,6 @@
 import React from 'react'
 import './films.css'
+import {clear} from "@testing-library/user-event/dist/clear";
 
 class CardContent extends React.Component {
     constructor(props) {
@@ -10,8 +11,8 @@ class CardContent extends React.Component {
         return (
             <div style={{
                 opacity: (this.props.make_opaque ? 0.9 : 0),
-                transition: 'opacity 1s'
-            }} className={this.props.make_opaque ? 'card_content_visible' : ''}>
+                transition: 'opacity 0.2s'
+            }}>
                 <h1 style={{color: 'white'}}>HI</h1>
             </div>
         )
@@ -27,12 +28,19 @@ class Title extends React.Component {
             fr: false,
             card_content_visible: false,
             card_content_opaque: false,
+            recog: false
         }
     }
 
     render() {
         let r, k, l
-        if (this.props.growth) {
+        let n, j, i
+        if (this.props.growth && !this.state.recog) {
+            this.setState({recog: true})
+            console.log('growing in the front')
+            clearTimeout(n)
+            clearTimeout(j)
+            clearTimeout(i)
             this.setState({fr: true})
             r = setTimeout(() => {
                 this.setState({showBigger: true})
@@ -43,6 +51,21 @@ class Title extends React.Component {
             l = setTimeout(() => {
                 this.setState({card_content_opaque: true}) //perhaps somehow add this to componentdidupdate
             }, 1000)
+        } else if (!this.props.growth && this.state.recog) {
+            this.setState({recog: false})
+            clearTimeout(r)
+            clearTimeout(k)
+            clearTimeout(l)
+            this.setState({card_content_opaque: false})
+            n = setTimeout(() => {
+                this.setState({card_content_visible: false})
+            }, 800)
+            j = setTimeout(() => {
+                this.setState({showBigger: false})
+            }, 1200)
+            i = setTimeout(() => {
+                this.setState({fr: false})
+            }, 1500)
         }
         return (
             <div>
@@ -95,6 +118,7 @@ class Card extends React.Component {
                 this.props.change_details(x.top, x.bottom)
             },
             big: false,
+            recog: false,
         }
     }
 
@@ -120,11 +144,20 @@ class Card extends React.Component {
 
     render() {
         const details = this.props.details
-        let k
-        if (this.props.growth) {
+        let k, i
+        if (this.props.growth && !this.state.recog) {
+            this.setState({recog: true})
+            clearTimeout(i)
             k = setTimeout(() => {
                 this.setState({big: true})
+                console.log('card growing')
             }, 400)
+        } else if (!this.props.growth && this.state.recog) {
+            this.setState({recog: false})
+            clearTimeout(k)
+            i = setTimeout(() => {
+                this.setState({big: false})
+            }, 1200)
         }
         return (
             <div className={"card" + (this.state.big ? ' big_card' : '')} ref={(card) => {this.card = card}}>
