@@ -5,15 +5,51 @@ import {clear} from "@testing-library/user-event/dist/clear";
 class CardContent extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            title_height: 0,
+            dirprod_height: 0
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.state.height != this.title.clientHeight) {
+            this.setState({height: this.title.clientHeight})
+        }
+        if (this.state.dirprod_height != this.dirprod.clientHeight) {
+            this.setState({dirprod_height: this.dirprod.clientHeight})
+        }
     }
 
     render() {
         return (
             <div style={{
                 opacity: (this.props.make_opaque ? 0.9 : 0),
-                transition: 'opacity 0.2s'
+                transition: 'opacity 0.2s',
+                position: 'relative',
+                height: '60vh',
             }}>
-                <h1 style={{color: 'white'}}>HI</h1>
+                <img src={this.props.big_image} alt={this.props.name + ' image'} className={'card_content_background'}/>
+                <h1 className="card_content_title" ref={x => {this.title = x}}>{this.props.name + ' (' + this.props.original + ')'}</h1>
+                <h3 className="dirprod" style={{
+                    position: 'absolute',
+                    top: this.state.title_height + 50,
+                    left: 20,
+                    fontSize: '.8em',
+                    color: 'white'
+                }} ref={x => {this.dirprod = x}}>directed by {this.props.director} | produced by {this.props.producer}</h3>
+                <p style={{
+                    position: 'absolute',
+                    color: 'white',
+                    left: 20,
+                    top: this.state.title_height + this.state.dirprod_height + 70,
+                    fontWeight: 800,
+                    fontSize: '1.2em',
+                    width: '50%',
+                }}>
+                    {this.props.desc}
+                </p>
+
+                <p className="date">{this.props.release_date}</p>
             </div>
         )
     }
@@ -37,7 +73,6 @@ class Title extends React.Component {
         let n, j, i
         if (this.props.growth && !this.state.recog) {
             this.setState({recog: true})
-            console.log('growing in the front')
             clearTimeout(n)
             clearTimeout(j)
             clearTimeout(i)
@@ -69,7 +104,8 @@ class Title extends React.Component {
         }
         return (
             <div>
-                {!this.state.showBigger && <div className={'front_screen' + (this.state.fr ? ' front_screen_bigger': ' front_screen_smaller')}>
+                {!this.state.showBigger && <div
+                    className={'front_screen' + (this.state.fr ? ' front_screen_bigger' : ' front_screen_smaller')}>
                     <button tabIndex={'-1'}>
                         <img className={'title_image'} src={this.props.image} alt={this.props.name + ' image'}/>
                     </button>
@@ -82,7 +118,15 @@ class Title extends React.Component {
                                  director={this.props.director}
                     />
                 </div>}
-                {this.state.card_content_visible && <CardContent make_opaque={this.state.card_content_opaque}/>}
+                {this.state.card_content_visible && <CardContent make_opaque={this.state.card_content_opaque}
+                                                                 desc={this.props.description}
+                                                                 release_date={this.props.release_date}
+                                                                 big_image={this.props.big_image}
+                                                                 name={this.props.name}
+                                                                 original={this.props.original}
+                                                                 producer={this.props.producer}
+                                                                 director={this.props.director}
+                                                                 rt={this.props.rotton_tomatoes}/>}
             </div>
         )
     }
@@ -91,13 +135,15 @@ class Title extends React.Component {
 class Description extends React.Component {
     render() {
         return (
-            <div className='description_holder' >
-                <div className={'background_image'} style={{backgroundImage: `url(${this.props.big_image})`,
-                                                            width: '100%',
-                                                            height:'100%',
-                                                            opacity: 0.5,
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundSize: '100%'}}>
+            <div className='description_holder'>
+                <div className={'background_image'} style={{
+                    backgroundImage: `url(${this.props.big_image})`,
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0.5,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: '100%'
+                }}>
                 </div>
                 <h1 className={'name'}>
                     {this.props.name.toUpperCase()} ({this.props.original})
@@ -124,10 +170,9 @@ class Card extends React.Component {
 
     count = 1
     scrollCallBack = () => {
-        if (this.count % 6 === 0) {
+        if (this.count % 4 === 0) {
             this.count = 1
             this.state.change()
-            console.log('gucci')
         } else {
             this.count += 1
         }
@@ -139,7 +184,7 @@ class Card extends React.Component {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll',this.scrollCallBack)
+        window.removeEventListener('scroll', this.scrollCallBack)
     }
 
     render() {
@@ -150,7 +195,6 @@ class Card extends React.Component {
             clearTimeout(i)
             k = setTimeout(() => {
                 this.setState({big: true})
-                console.log('card growing')
             }, 200)
         } else if (!this.props.growth && this.state.recog) {
             this.setState({recog: false})
@@ -160,7 +204,9 @@ class Card extends React.Component {
             }, 200)
         }
         return (
-            <div className={"card" + (this.state.big ? ' big_card' : '')} ref={(card) => {this.card = card}}>
+            <div className={"card" + (this.state.big ? ' big_card' : '')} ref={(card) => {
+                this.card = card
+            }}>
                 <Title name={details.title}
                        original={details.original_title}
                        image={details.image}
@@ -183,14 +229,15 @@ class FilmList extends React.Component {
         super(props);
         this.state = {
             bigger: Array(this.props.ghibli_films.length).fill(false),
-            sizes_and_positions: Array(this.props.ghibli_films.length).fill([0,0])
         }
-        this.card_refs = Array(this.props.ghibli_films.length).fill(React.createRef())
     }
 
     change_size_and_position(i, top, bottom) {
         const height = window.innerHeight
-        if (top < height/2 && bottom > height/2) {
+        if (top < height / 2 && bottom > height / 2) {
+            if (this.state.bigger[i]) {
+                return
+            }
             const new_array = Array(this.props.ghibli_films.length).fill(false)
             new_array[i] = true
             this.setState({bigger: new_array})
@@ -200,7 +247,9 @@ class FilmList extends React.Component {
     render() {
         const ghibli_films = this.props.ghibli_films
         const film_details = ghibli_films.map((film, i) => {
-            return <Card details={film} key={i} growth={this.state.bigger[i]} change_details ={(s, p) => {this.change_size_and_position(i, s, p)}}/>
+            return <Card details={film} key={i} growth={this.state.bigger[i]} change_details={(s, p) => {
+                this.change_size_and_position(i, s, p)
+            }}/>
         })
 
         return (

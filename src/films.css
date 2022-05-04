@@ -29,7 +29,7 @@
 }
 
 .big_card {
-    height: 70vh;
+    height: 60vh;
 }
 
 /*.front_screen:hover {*/
@@ -111,4 +111,17 @@ button {
 
 .card_content_visible {
     opacity: 0.9
+}
+
+.card_content_background {
+    opacity: 0.5;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card_content_title {
+    position:absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
 }
