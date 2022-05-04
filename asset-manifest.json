@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/studio-ghibli-site/static/css/main.04f8ca45.css",
-    "main.js": "/studio-ghibli-site/static/js/main.553277b4.js",
+    "main.js": "/studio-ghibli-site/static/js/main.c7f43f14.js",
     "static/media/ghiblinoblack.mp4": "/studio-ghibli-site/static/media/ghiblinoblack.20f3026ba8b0addf996e.mp4",
     "static/media/porco_banner.jpg": "/studio-ghibli-site/static/media/porco_banner.cdae802d0b71ca339dbe.jpg",
     "static/media/kiki_banner.jpg": "/studio-ghibli-site/static/media/kiki_banner.4a7e139afe179079fea9.jpg",
@@ -50,10 +50,10 @@
     "static/media/castle_banner.jpg": "/studio-ghibli-site/static/media/castle_banner.c8283b6eada2bc4d1a71.jpg",
     "index.html": "/studio-ghibli-site/index.html",
     "main.04f8ca45.css.map": "/studio-ghibli-site/static/css/main.04f8ca45.css.map",
-    "main.553277b4.js.map": "/studio-ghibli-site/static/js/main.553277b4.js.map"
+    "main.c7f43f14.js.map": "/studio-ghibli-site/static/js/main.c7f43f14.js.map"
   },
   "entrypoints": [
     "static/css/main.04f8ca45.css",
-    "static/js/main.553277b4.js"
+    "static/js/main.c7f43f14.js"
   ]
 }
