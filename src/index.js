@@ -649,11 +649,8 @@ class Ghibli extends React.Component {
             body.style.overflow = 'hidden'
         } else {
             body.style.overflow = ''
-            console.log('no overflow')
         }
     }
-
-
 
     render() {
         this.scrollHandler(true)

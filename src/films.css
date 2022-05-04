@@ -20,7 +20,7 @@
     transition: height .2s ease-in;
 }
 
-.card:hover .front_screen {
+.card:hover .front_screen_smaller {
     opacity: 0.9;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .big_card {
-    height: 80vh;
+    height: 70vh;
 }
 
 /*.front_screen:hover {*/
@@ -50,8 +50,8 @@
 }
 
 .front_screen {
-    transition: opacity 0.2s ease-in;
-    opacity: 0.55;
+    transition: opacity .4s ease-in;
+    opacity: 0;
     display: flex;
 }
 
@@ -90,4 +90,25 @@ button {
     position: absolute;
     bottom: 0px;
     right: 15px;
+}
+
+.front_screen_bigger {
+    opacity: 0;
+}
+
+.front_screen_smaller {
+    opacity: 0.55;
+}
+
+.front_screen_invisible {
+    opacity: 0;
+}
+
+.card_content {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.card_content_visible {
+    opacity: 0.9
 }

@@ -66,7 +66,7 @@ class FrontScreen extends React.Component {
         return (
             <div className="opening">
                 {!this.state.showVideo && <LoadingScreen visible={this.state.loading}/>}
-                <VideoScreen onPlay = {() => {this.onPlayHandler(); console.log('hi')}} visible={this.state.showVideo}/>
+                <VideoScreen onPlay = {() => this.onPlayHandler()} visible={this.state.showVideo}/>
             </div>
         )
     }
