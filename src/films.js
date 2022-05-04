@@ -44,13 +44,13 @@ class Title extends React.Component {
             this.setState({fr: true})
             r = setTimeout(() => {
                 this.setState({showBigger: true})
-            }, 400)
+            }, 300)
             k = setTimeout(() => {
                 this.setState({card_content_visible: true})
-            }, 800)
+            }, 300)
             l = setTimeout(() => {
                 this.setState({card_content_opaque: true}) //perhaps somehow add this to componentdidupdate
-            }, 1000)
+            }, 500)
         } else if (!this.props.growth && this.state.recog) {
             this.setState({recog: false})
             clearTimeout(r)
@@ -59,13 +59,13 @@ class Title extends React.Component {
             this.setState({card_content_opaque: false})
             n = setTimeout(() => {
                 this.setState({card_content_visible: false})
-            }, 800)
+            }, 200)
             j = setTimeout(() => {
                 this.setState({showBigger: false})
-            }, 1200)
+            }, 400)
             i = setTimeout(() => {
                 this.setState({fr: false})
-            }, 1500)
+            }, 500)
         }
         return (
             <div>
@@ -151,13 +151,13 @@ class Card extends React.Component {
             k = setTimeout(() => {
                 this.setState({big: true})
                 console.log('card growing')
-            }, 400)
+            }, 200)
         } else if (!this.props.growth && this.state.recog) {
             this.setState({recog: false})
             clearTimeout(k)
             i = setTimeout(() => {
                 this.setState({big: false})
-            }, 1200)
+            }, 200)
         }
         return (
             <div className={"card" + (this.state.big ? ' big_card' : '')} ref={(card) => {this.card = card}}>
