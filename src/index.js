@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import FilmList from './films'
 import FrontScreen from './frontscreen'
+import ButtonToTop from './buttontotop'
 
 const ghibli_films =
 [
@@ -658,6 +659,7 @@ class Ghibli extends React.Component {
             <div>
                 <FrontScreen scroll={(on) => this.scrollHandler(on)}/>
                 <FilmList ghibli_films = {ghibli_films} tab={this.state.tab}/>
+                <ButtonToTop/>
             </div>
         )
     }

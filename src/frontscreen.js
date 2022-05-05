@@ -31,7 +31,7 @@ class VideoScreen extends React.Component {
 
                 <a className={this.props.visible ? 'fullvisible': 'notvisible'} href="https://www.imdb.com/list/ls076439519/" target={'_blank'}><img src={require("./media/ghibli.png")} alt="Ghibli Icon" className={'logo'}/></a>
 
-                <button className="continue_button" onClick={() => {
+                <button className={'continue_button ' + (this.props.visible ? 'visible' : 'notvisible')} onClick={() => {
                     window.scrollTo({
                         top: window.innerHeight,
                         left: 0,

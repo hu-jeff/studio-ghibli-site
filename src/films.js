@@ -1,6 +1,5 @@
 import React from 'react'
 import './films.css'
-import {clear} from "@testing-library/user-event/dist/clear";
 
 class CardContent extends React.Component {
     constructor(props) {
@@ -41,9 +40,9 @@ class CardContent extends React.Component {
                     position: 'absolute',
                     color: 'white',
                     left: 20,
-                    top: this.state.title_height + this.state.dirprod_height + 70,
+                    top: this.state.title_height + 90,
                     fontWeight: 800,
-                    fontSize: '1.2em',
+                    fontSize: '1.1em',
                     width: '50%',
                 }}>
                     {this.props.desc}
@@ -73,9 +72,9 @@ class Title extends React.Component {
         let n, j, i
         if (this.props.growth && !this.state.recog) {
             this.setState({recog: true})
-            clearTimeout(n)
-            clearTimeout(j)
-            clearTimeout(i)
+            // clearTimeout(n)
+            // clearTimeout(j)
+            // clearTimeout(i)
             this.setState({fr: true})
             r = setTimeout(() => {
                 this.setState({showBigger: true})
@@ -88,9 +87,9 @@ class Title extends React.Component {
             }, 500)
         } else if (!this.props.growth && this.state.recog) {
             this.setState({recog: false})
-            clearTimeout(r)
-            clearTimeout(k)
-            clearTimeout(l)
+            // clearTimeout(r)
+            // clearTimeout(k)
+            // clearTimeout(l)
             this.setState({card_content_opaque: false})
             n = setTimeout(() => {
                 this.setState({card_content_visible: false})
@@ -192,13 +191,13 @@ class Card extends React.Component {
         let k, i
         if (this.props.growth && !this.state.recog) {
             this.setState({recog: true})
-            clearTimeout(i)
+            // clearTimeout(i)
             k = setTimeout(() => {
                 this.setState({big: true})
             }, 200)
         } else if (!this.props.growth && this.state.recog) {
             this.setState({recog: false})
-            clearTimeout(k)
+            // clearTimeout(k)
             i = setTimeout(() => {
                 this.setState({big: false})
             }, 200)

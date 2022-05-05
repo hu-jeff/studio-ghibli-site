@@ -37,12 +37,12 @@
 
 .fullvisible {
     opacity: 1;
-    /*transition: opacity 1s linear;*/
+    transition: opacity 1s linear;
 }
 
 .notvisible {
     opacity: 0;
-    /*transition: opacity 1s ease-in; !* 1s *!*/
+    transition: opacity 1s ease-in; /* 1s */
 }
 
 .slide {
